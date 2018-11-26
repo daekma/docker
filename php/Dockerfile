@@ -1,6 +1,6 @@
 FROM php:7-apache
 
-ENV TZ=Asia/Tokyo
+ENV TZ=Asia/Seoul
 ENV XDEBUG_REMOTE_CONNECT_BACK=0
 ENV XDEBUG_REMOTE_PORT=9000
 ENV XDEBUG_REMOTE_HOST=docker.for.win.host.internal
@@ -25,6 +25,8 @@ RUN docker-php-ext-configure gd \
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pcntl
+RUN zlib1g-dev \
+    && docker-php-ext-install zip
 
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug \

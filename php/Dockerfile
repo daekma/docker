@@ -25,7 +25,7 @@ RUN docker-php-ext-configure gd \
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pcntl
-RUN zlib1g-dev \
+RUN apt-get install -y zlib1g-dev \
     && docker-php-ext-install zip
 
 RUN pecl install xdebug

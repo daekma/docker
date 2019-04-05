@@ -71,6 +71,9 @@ RUN apt-get install -y libmagick++-dev --no-install-recommends \
 
 RUN apt-get install -y iputils-ping
 
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/bin/ --filename=composer
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN a2enmod rewrite \

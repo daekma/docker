@@ -71,6 +71,8 @@ RUN apt-get install -y libmagick++-dev --no-install-recommends \
 
 RUN apt-get install -y iputils-ping
 
+RUN apt-get install -y unzip
+
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer
 

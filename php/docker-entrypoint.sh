@@ -41,6 +41,7 @@ echo "xdebug.remote_handler=$XDEBUG_REMOTE_HANDLER" >> /usr/local/etc/php/conf.d
 echo "xdebug.remote_connect_back=$XDEBUG_REMOTE_CONNECT_BACK" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.remote_port=$XDEBUG_REMOTE_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.remote_host=$XDEBUG_REMOTE_HOST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.idekey=$XDEBUG_IDEKEY" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 exec apache2-foreground

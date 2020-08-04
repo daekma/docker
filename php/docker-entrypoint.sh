@@ -44,4 +44,7 @@ echo "xdebug.remote_host=$XDEBUG_REMOTE_HOST" >> /usr/local/etc/php/conf.d/docke
 echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.idekey=$XDEBUG_IDEKEY" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+file_env 'DOCUMENT_ROOT' '/var/www/html'
+sed -i "s@DocumentRoot .*@DocumentRoot $DOCUMENT_ROOT@g" /etc/apache2/sites-available/000-default.conf
+
 exec apache2-foreground

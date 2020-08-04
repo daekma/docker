@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:7.3-apache
 
 RUN apt-get update
 
@@ -76,10 +76,14 @@ RUN apt-get install -y unzip
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer
 
+RUN apt-get install -y vim
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN a2enmod rewrite \
-    && a2enmod headers
+RUN a2enmod rewrite
+RUN a2enmod headers
+
+WORKDIR /var/www
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh

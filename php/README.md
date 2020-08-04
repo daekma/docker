@@ -2,7 +2,7 @@
 
 ## Components
 
-- PHP 7
+- PHP 7.3
 - FFmpeg
 - ImageMagick (HEIC support)
 
@@ -20,6 +20,7 @@
 | Parameter                    | Description                                                  |
 | :--------------------------- | :----------------------------------------------------------- |
 | `TZ`                         | Time zone (default: `Asia/Seoul`)                            |
+| `DOCUMENT_ROOT`              | Apache DocumentRoot (default: `/var/www/html`)               |
 | `XDEBUG_REMOTE_ENABLE`       | xdebug.remote_enable (default: `1`)                          |
 | `XDEBUG_REMOTE_AUTOSTART`    | xdebug.remote_autostart (default: `0`)                       |
 | `XDEBUG_REMOTE_HANDLER`      | xdebug.remote_handler (default: `dbgp`)                      |

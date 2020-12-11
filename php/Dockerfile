@@ -21,6 +21,7 @@ RUN docker-php-ext-install pcntl
 RUN apt-get install -y libzip-dev \
     && docker-php-ext-install zip
 
+RUN apt-get install unixodbc-dev
 RUN pecl install sqlsrv pdo_sqlsrv
 RUN docker-php-ext-enable sqlsrv pdo_sqlsrv
 

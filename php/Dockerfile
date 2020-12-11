@@ -17,6 +17,7 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install gd
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_sqlsrv
 RUN docker-php-ext-install pcntl
 RUN apt-get install -y libzip-dev \
     && docker-php-ext-install zip

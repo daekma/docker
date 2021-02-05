@@ -2,7 +2,7 @@ FROM php:7.3-apache
 
 RUN apt-get update
 
-RUN apt-get -y install git autotools-dev automake autoconf libtool
+RUN apt-get install -y git autotools-dev automake autoconf libtool
 
 RUN apt-get install -y --no-install-recommends \
         libfreetype6-dev \
@@ -21,16 +21,19 @@ RUN docker-php-ext-install pcntl
 RUN apt-get install -y libzip-dev \
     && docker-php-ext-install zip
 
-RUN apt-get install unixodbc-dev
+RUN apt-get install -y unixodbc-dev
 RUN pecl install sqlsrv pdo_sqlsrv
 RUN docker-php-ext-enable sqlsrv pdo_sqlsrv
+
+RUN pecl install redis
+RUN docker-php-ext-enable redis
 
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 
 RUN apt-get install -y ffmpeg
 
-RUN apt-get -y install x265 \
+RUN apt-get install -y x265 \
     && cd /usr/local/src \
     && git clone https://github.com/strukturag/libde265.git \
     && cd libde265 \
@@ -79,6 +82,9 @@ RUN apt-get install -y unzip
 
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
 
 RUN apt-get install -y vim
 

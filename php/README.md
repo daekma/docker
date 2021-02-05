@@ -5,6 +5,7 @@
 - PHP 7.3
 - FFmpeg
 - ImageMagick (HEIC support)
+- Node.js 14
 
 ### PHP extensions
 
@@ -14,6 +15,7 @@
 - pcntl
 - zip
 - imagick
+- redis
 
 ## Environment variables
 

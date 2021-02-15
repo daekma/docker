@@ -28,11 +28,13 @@ ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 echo $TZ > /etc/timezone
 echo date.timezone = $TZ > /usr/local/etc/php/conf.d/docker-php-ext-timezone.ini
 
+file_env 'XDEBUG_CLI_COLOR' '0'
 file_env 'XDEBUG_MODE' 'debug'
-file_env 'XDEBUG_START_WITH_REQUEST' 'yes'
+file_env 'XDEBUG_START_WITH_REQUEST' 'trigger'
 file_env 'XDEBUG_CLIENT_PORT' '9000'
 file_env 'XDEBUG_CLIENT_HOST' 'docker.for.win.host.internal'
 file_env 'XDEBUG_IDEKEY' 'VSCODE'
+echo "xdebug.cli_color=$XDEBUG_CLI_COLOR" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.mode=$XDEBUG_MODE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.start_with_request=$XDEBUG_START_WITH_REQUEST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.client_port=$XDEBUG_CLIENT_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

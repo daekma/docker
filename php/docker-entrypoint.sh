@@ -28,20 +28,16 @@ ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 echo $TZ > /etc/timezone
 echo date.timezone = $TZ > /usr/local/etc/php/conf.d/docker-php-ext-timezone.ini
 
-file_env 'XDEBUG_REMOTE_ENABLE' '1'
-file_env 'XDEBUG_REMOTE_AUTOSTART' '0'
-file_env 'XDEBUG_REMOTE_HANDLER' 'dbgp'
-file_env 'XDEBUG_REMOTE_CONNECT_BACK' '0'
-file_env 'XDEBUG_REMOTE_PORT' '9000'
-file_env 'XDEBUG_REMOTE_HOST' 'docker.for.win.host.internal'
+file_env 'XDEBUG_MODE' 'debug'
+file_env 'XDEBUG_START_WITH_REQUEST' 'yes'
+file_env 'XDEBUG_CLIENT_PORT' '9000'
+file_env 'XDEBUG_CLIENT_HOST' 'docker.for.win.host.internal'
 file_env 'XDEBUG_IDEKEY' 'VSCODE'
-echo "xdebug.remote_enable=$XDEBUG_REMOTE_ENABLE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.remote_autostart=$XDEBUG_REMOTE_AUTOSTART" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.remote_handler=$XDEBUG_REMOTE_HANDLER" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.remote_connect_back=$XDEBUG_REMOTE_CONNECT_BACK" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.remote_port=$XDEBUG_REMOTE_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.remote_host=$XDEBUG_REMOTE_HOST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.mode=$XDEBUG_MODE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.start_with_request=$XDEBUG_START_WITH_REQUEST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.client_port=$XDEBUG_CLIENT_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.client_host=$XDEBUG_CLIENT_HOST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.idekey=$XDEBUG_IDEKEY" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 file_env 'DOCUMENT_ROOT' '/var/www/html'

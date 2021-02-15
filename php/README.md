@@ -19,14 +19,12 @@
 
 ## Environment variables
 
-| Parameter                    | Description                                                  |
-| :--------------------------- | :----------------------------------------------------------- |
-| `TZ`                         | Time zone (default: `Asia/Seoul`)                            |
-| `DOCUMENT_ROOT`              | Apache DocumentRoot (default: `/var/www/html`)               |
-| `XDEBUG_REMOTE_ENABLE`       | xdebug.remote_enable (default: `1`)                          |
-| `XDEBUG_REMOTE_AUTOSTART`    | xdebug.remote_autostart (default: `0`)                       |
-| `XDEBUG_REMOTE_HANDLER`      | xdebug.remote_handler (default: `dbgp`)                      |
-| `XDEBUG_REMOTE_CONNECT_BACK` | xdebug.remote_connect_back (default: `0`)                    |
-| `XDEBUG_REMOTE_PORT`         | xdebug.remote_port (default: `9000`)                         |
-| `XDEBUG_REMOTE_HOST`         | xdebug.remote_host (default: `docker.for.win.host.internal`) |
-| `XDEBUG_IDEKEY`              | xdebug.idekey (default: `VSCODE`)                            |
+| Parameter                   | Description                                                  |
+| :-------------------------- | :----------------------------------------------------------- |
+| `TZ`                        | Time zone (default: `Asia/Seoul`)                            |
+| `DOCUMENT_ROOT`             | Apache DocumentRoot (default: `/var/www/html`)               |
+| `XDEBUG_MODE`               | xdebug.mode (default: `debug`)                               |
+| `XDEBUG_START_WITH_REQUEST` | xdebug.start_with_request (default: `yes`)                   |
+| `XDEBUG_CLIENT_PORT`        | xdebug.client_port (default: `9000`)                         |
+| `XDEBUG_CLIENT_HOST`        | xdebug.client_host (default: `docker.for.win.host.internal`) |
+| `XDEBUG_IDEKEY`             | xdebug.idekey (default: `VSCODE`)                            |

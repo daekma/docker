@@ -5,15 +5,15 @@ RUN apt-get update
 RUN apt-get install -y git autotools-dev automake autoconf libtool
 
 RUN apt-get install -y --no-install-recommends \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        libwebp-dev
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libwebp-dev
 RUN docker-php-ext-configure gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-webp-dir=/usr/include/ \
+    --with-freetype-dir=/usr/include/ \
+    --with-jpeg-dir=/usr/include/ \
+    --with-png-dir=/usr/include/ \
+    --with-webp-dir=/usr/include/ \
     && docker-php-ext-install gd
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
@@ -30,6 +30,11 @@ RUN docker-php-ext-enable redis
 
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
+
+RUN docker-php-ext-install opcache
+
+RUN pecl install apcu
+RUN docker-php-ext-enable apcu
 
 RUN apt-get install -y ffmpeg
 
@@ -88,7 +93,12 @@ RUN apt-get install -y nodejs
 
 RUN apt-get install -y vim
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -f /tmp/.apt-update \
+    && apt-get autoremove -y -f \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && find /tmp/ /var/log/ -mindepth 1 -delete \
+    && rm -rf /root/.cache
 
 RUN a2enmod rewrite
 RUN a2enmod headers

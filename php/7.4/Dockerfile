@@ -1,41 +1,15 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 RUN apt-get update
 
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/bin/ --filename=composer
+
 RUN apt-get install -y git autotools-dev automake autoconf libtool
-
-RUN apt-get install -y --no-install-recommends \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libwebp-dev
-RUN docker-php-ext-configure gd \
-    --with-freetype-dir=/usr/include/ \
-    --with-jpeg-dir=/usr/include/ \
-    --with-png-dir=/usr/include/ \
-    --with-webp-dir=/usr/include/ \
-    && docker-php-ext-install gd
-RUN docker-php-ext-install exif
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install pcntl
-RUN apt-get install -y libzip-dev \
-    && docker-php-ext-install zip
-
-RUN apt-get install -y unixodbc-dev
-RUN pecl install sqlsrv pdo_sqlsrv
-RUN docker-php-ext-enable sqlsrv pdo_sqlsrv
-
-RUN pecl install redis
-RUN docker-php-ext-enable redis
-
-RUN pecl install xdebug
-RUN docker-php-ext-enable xdebug
-
-RUN docker-php-ext-install opcache
-
-RUN pecl install apcu
-RUN docker-php-ext-enable apcu
-
+RUN apt-get install -y iputils-ping
 RUN apt-get install -y ffmpeg
 
 RUN apt-get install -y x265 \
@@ -81,17 +55,44 @@ RUN apt-get install -y libmagick++-dev --no-install-recommends \
     && cd ../ \
     && rm -rf imagick
 
-RUN apt-get install -y iputils-ping
+RUN apt-get install -y --no-install-recommends \
+    zlib1g-dev \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libwebp-dev
+RUN docker-php-ext-configure gd --enable-gd \
+    --with-jpeg=/usr/include/ \
+    --with-freetype=/usr/include/ \
+    --with-webp=/usr/include/
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install exif
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pcntl
+RUN apt-get install -y libzip-dev
+RUN docker-php-ext-install zip
 
-RUN apt-get install -y unzip
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo_mysql
+RUN apt-get install -y unixodbc-dev
+RUN pecl install sqlsrv pdo_sqlsrv
+RUN docker-php-ext-enable sqlsrv pdo_sqlsrv
 
-RUN curl -sS https://getcomposer.org/installer | \
-    php -- --install-dir=/usr/bin/ --filename=composer
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
+RUN pecl install redis
+RUN docker-php-ext-enable redis
 
-RUN apt-get install -y vim
+RUN apt-get install -y libzip-dev
+RUN docker-php-ext-install zip
+
+RUN docker-php-ext-install opcache
+
+RUN pecl install apcu
+RUN docker-php-ext-enable apcu
+
+RUN docker-php-ext-install pcntl
 
 RUN rm -f /tmp/.apt-update \
     && apt-get autoremove -y -f \

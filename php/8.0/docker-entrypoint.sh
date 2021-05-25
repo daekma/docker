@@ -39,7 +39,7 @@ echo "xdebug.start_with_request=$XDEBUG_START_WITH_REQUEST" >> /usr/local/etc/ph
 echo "xdebug.client_port=$XDEBUG_CLIENT_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.client_host=$XDEBUG_CLIENT_HOST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.file_link_format=$XDEBUG_FILE_LINK_FORMAT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.file_link_format=\"$XDEBUG_FILE_LINK_FORMAT\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.idekey=$XDEBUG_IDEKEY" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 file_env 'DOCUMENT_ROOT' '/var/www/html'

@@ -32,12 +32,14 @@ file_env 'XDEBUG_MODE' 'develop,debug'
 file_env 'XDEBUG_START_WITH_REQUEST' 'trigger'
 file_env 'XDEBUG_CLIENT_PORT' '9000'
 file_env 'XDEBUG_CLIENT_HOST' 'host.docker.internal'
+file_env 'XDEBUG_FILE_LINK_FORMAT' ''
 file_env 'XDEBUG_IDEKEY' 'VSCODE'
 echo "xdebug.mode=$XDEBUG_MODE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.start_with_request=$XDEBUG_START_WITH_REQUEST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.client_port=$XDEBUG_CLIENT_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.client_host=$XDEBUG_CLIENT_HOST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.file_link_format=$XDEBUG_FILE_LINK_FORMAT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.idekey=$XDEBUG_IDEKEY" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 file_env 'DOCUMENT_ROOT' '/var/www/html'

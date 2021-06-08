@@ -17,7 +17,7 @@ file_env() {
 	if [ "${!var:-}" ]; then
 		val="${!var}"
 	elif [ "${!fileVar:-}" ]; then
-		val="$(< "${!fileVar}")"
+		val="$(<"${!fileVar}")"
 	fi
 	export "$var"="$val"
 	unset "$fileVar"
@@ -25,22 +25,22 @@ file_env() {
 
 file_env 'TZ' 'Asia/Seoul'
 ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
-echo $TZ > /etc/timezone
-echo date.timezone = $TZ > /usr/local/etc/php/conf.d/docker-php-ext-timezone.ini
+echo $TZ >/etc/timezone
+echo date.timezone = $TZ >/usr/local/etc/php/conf.d/docker-php-ext-timezone.ini
 
 file_env 'XDEBUG_MODE' 'develop,debug'
 file_env 'XDEBUG_START_WITH_REQUEST' 'trigger'
-file_env 'XDEBUG_CLIENT_PORT' '9000'
+file_env 'XDEBUG_CLIENT_PORT' '9003'
 file_env 'XDEBUG_CLIENT_HOST' 'host.docker.internal'
 file_env 'XDEBUG_FILE_LINK_FORMAT' ''
 file_env 'XDEBUG_IDEKEY' 'VSCODE'
-echo "xdebug.mode=$XDEBUG_MODE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.start_with_request=$XDEBUG_START_WITH_REQUEST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.client_port=$XDEBUG_CLIENT_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.client_host=$XDEBUG_CLIENT_HOST" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.file_link_format=\"$XDEBUG_FILE_LINK_FORMAT\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-echo "xdebug.idekey=$XDEBUG_IDEKEY" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.mode=$XDEBUG_MODE" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.start_with_request=$XDEBUG_START_WITH_REQUEST" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.client_port=$XDEBUG_CLIENT_PORT" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.client_host=$XDEBUG_CLIENT_HOST" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.log=/var/log/xdebug.log" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.file_link_format=\"$XDEBUG_FILE_LINK_FORMAT\"" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+echo "xdebug.idekey=$XDEBUG_IDEKEY" >>/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 file_env 'DOCUMENT_ROOT' '/var/www/html'
 sed -i "s@DocumentRoot .*@DocumentRoot $DOCUMENT_ROOT@g" /etc/apache2/sites-available/000-default.conf

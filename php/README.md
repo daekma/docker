@@ -2,22 +2,24 @@
 
 ## Components
 
-- FFmpeg
-- ImageMagick (HEIC support)
-- Node.js 14
+-   FFmpeg
+-   ImageMagick (HEIC support)
+-   Node.js 14
 
 ### PHP extensions
 
-- gd
-- exif
-- pdo_mysql
-- pcntl
-- zip
-- imagick
-- redis
-- xdebug
-- opcache
-- apcu
+-   gd
+-   exif
+-   pdo
+-   pdo_mysql
+-   pdo_sqlsrv
+-   pcntl
+-   imagick
+-   xdebug
+-   zip
+-   redis
+-   opcache
+-   apcu
 
 ## Environment variables
 
@@ -27,7 +29,6 @@
 | `DOCUMENT_ROOT`             | Apache DocumentRoot (default: `/var/www/html`)               |
 | `XDEBUG_MODE`               | xdebug.mode (default: `develop,debug`)                       |
 | `XDEBUG_START_WITH_REQUEST` | xdebug.start_with_request (default: `trigger`)               |
-| `XDEBUG_CLIENT_PORT`        | xdebug.client_port (default: `9000`)                         |
+| `XDEBUG_CLIENT_PORT`        | xdebug.client_port (default: `9003`)                         |
 | `XDEBUG_CLIENT_HOST`        | xdebug.client_host (default: `docker.for.win.host.internal`) |
-| `XDEBUG_FILE_LINK_FORMAT`   | xdebug.file_link_format (default: ``)                        |
 | `XDEBUG_IDEKEY`             | xdebug.idekey (default: `VSCODE`)                            |

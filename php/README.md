@@ -20,6 +20,7 @@
 -   redis
 -   opcache
 -   apcu
+-   intl
 
 ## Environment variables
 

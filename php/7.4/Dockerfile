@@ -94,6 +94,8 @@ RUN docker-php-ext-enable apcu
 
 RUN docker-php-ext-install pcntl
 
+RUN docker-php-ext-install intl
+
 RUN rm -f /tmp/.apt-update \
     && apt-get autoremove -y -f \
     && apt-get clean -y \

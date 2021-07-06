@@ -12,6 +12,13 @@ RUN apt-get install -y git autotools-dev automake autoconf libtool
 RUN apt-get install -y iputils-ping
 RUN apt-get install -y ffmpeg
 
+RUN apt-get install -y --no-install-recommends \
+    zlib1g-dev \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libwebp-dev
+
 RUN apt-get install -y x265 \
     && cd /usr/local/src \
     && git clone https://github.com/strukturag/libde265.git \
@@ -55,12 +62,6 @@ RUN apt-get install -y libmagick++-dev --no-install-recommends \
     && cd ../ \
     && rm -rf imagick
 
-RUN apt-get install -y --no-install-recommends \
-    zlib1g-dev \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libwebp-dev
 RUN docker-php-ext-configure gd --enable-gd \
     --with-jpeg=/usr/include/ \
     --with-freetype=/usr/include/ \

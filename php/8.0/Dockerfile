@@ -97,6 +97,9 @@ RUN docker-php-ext-install pcntl
 
 RUN docker-php-ext-install intl
 
+RUN npm -g install npm \
+    && npm cache clean --force
+
 RUN rm -f /tmp/.apt-update \
     && apt-get autoremove -y -f \
     && apt-get clean -y \
